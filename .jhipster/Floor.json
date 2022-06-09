@@ -1,0 +1,98 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080449",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_floor",
+  "fields": [
+    {
+      "fieldName": "floorName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "javadoc": "층 이름"
+    },
+    {
+      "fieldName": "floorDesc",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "500",
+      "javadoc": "층 설명"
+    },
+    {
+      "fieldName": "useYn",
+      "fieldType": "Boolean",
+      "javadoc": "사용유무"
+    },
+    {
+      "fieldName": "orderNo",
+      "fieldType": "Integer",
+      "javadoc": "정렬 순서"
+    },
+    {
+      "fieldName": "backgroundImageId",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "36",
+      "javadoc": "도면 이미지"
+    },
+    {
+      "fieldName": "svgImage",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "36",
+      "javadoc": "SVG 이미지"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "층",
+  "jpaMetamodelFiltering": false,
+  "name": "Floor",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "resource",
+      "otherEntityRelationshipName": "floor",
+      "relationshipName": "resource",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "attributeFloor",
+      "otherEntityRelationshipName": "floor",
+      "relationshipName": "attributes",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "fileinfo",
+      "otherEntityRelationshipName": "floor",
+      "relationshipName": "webImg",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "fileinfo",
+      "otherEntityRelationshipName": "floor",
+      "relationshipName": "kioskImg",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "fileinfo",
+      "otherEntityRelationshipName": "floor",
+      "relationshipName": "miniImg",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "drawing",
+      "otherEntityRelationshipName": "floor",
+      "relationshipName": "drawing",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "office",
+      "otherEntityRelationshipName": "floors",
+      "relationshipName": "office",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

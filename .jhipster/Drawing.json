@@ -1,0 +1,31 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080459",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_drawing",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100",
+      "javadoc": "도면명"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "도면",
+  "jpaMetamodelFiltering": false,
+  "name": "Drawing",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "drawingItem",
+      "otherEntityRelationshipName": "drawing",
+      "relationshipName": "drawingItems",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

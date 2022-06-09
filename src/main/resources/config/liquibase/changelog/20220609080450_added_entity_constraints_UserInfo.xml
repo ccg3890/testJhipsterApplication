@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity UserInfo.
+    -->
+    <changeSet id="20220609080450-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="company_id"
+                                 baseTableName="tb_user"
+                                 constraintName="fk_tb_user__company_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tb_company"/>
+
+        <addForeignKeyConstraint baseColumnNames="org_id"
+                                 baseTableName="tb_user"
+                                 constraintName="fk_tb_user__org_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tb_org"/>
+
+        <addForeignKeyConstraint baseColumnNames="rank_id"
+                                 baseTableName="tb_user"
+                                 constraintName="fk_tb_user__rank_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tb_rank"/>
+
+        <addForeignKeyConstraint baseColumnNames="file_id"
+                                 baseTableName="tb_user"
+                                 constraintName="fk_tb_user__file_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tb_fileinfo"/>
+
+        <addForeignKeyConstraint baseColumnNames="tb_user_id"
+                                 baseTableName="rel_tb_user__auth"
+                                 constraintName="fk_rel_tb_user__auth__tb_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tb_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="auth_id"
+                                 baseTableName="rel_tb_user__auth"
+                                 constraintName="fk_rel_tb_user__auth__auth_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tb_auth"/>
+    </changeSet>
+</databaseChangeLog>

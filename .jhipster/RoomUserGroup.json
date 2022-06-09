@@ -1,0 +1,38 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080507",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_roomusergroup",
+  "fields": [
+    {
+      "fieldName": "groupId",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "32",
+      "javadoc": "그룹(조직)ID"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "64",
+      "javadoc": "그룹(조직)명"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "회의실 사용자 그룹",
+  "jpaMetamodelFiltering": false,
+  "name": "RoomUserGroup",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "room",
+      "otherEntityRelationshipName": "roomUserGroups",
+      "relationshipName": "room",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

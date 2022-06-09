@@ -1,0 +1,72 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080439",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_dictionary",
+  "fields": [
+    {
+      "fieldName": "key",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique", "maxlength"],
+      "fieldValidateRulesMaxlength": "128",
+      "javadoc": "key"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "64",
+      "javadoc": "키워드명"
+    },
+    {
+      "fieldName": "discription",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "1024",
+      "javadoc": "설명"
+    },
+    {
+      "fieldName": "checkPattern",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "512",
+      "javadoc": "체크로직(regx)"
+    },
+    {
+      "fieldName": "defaultValue",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "256",
+      "javadoc": "default"
+    },
+    {
+      "fieldName": "orderNo",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0",
+      "javadoc": "순서"
+    },
+    {
+      "fieldName": "valid",
+      "fieldType": "Boolean",
+      "javadoc": "사용여부"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "키워드사전 (키워드 등록 대상 식별은 special/general 여부로 판단)",
+  "jpaMetamodelFiltering": false,
+  "name": "Dictionary",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "archetype",
+      "otherEntityRelationshipName": "dictionary",
+      "ownerSide": false,
+      "relationshipName": "archetype",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,42 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080511",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_reservationtarget",
+  "fields": [],
+  "fluentMethods": true,
+  "javadoc": "예약대상(회의실, 좌석, 등등)",
+  "jpaMetamodelFiltering": false,
+  "name": "ReservationTarget",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "resource",
+      "otherEntityRelationshipName": "reservationTarget",
+      "ownerSide": true,
+      "relationshipName": "resource",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "attendee",
+      "otherEntityRelationshipName": "reservationTarget",
+      "relationshipName": "attendees",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "reservedRoomSeat",
+      "otherEntityRelationshipName": "reservationTarget",
+      "relationshipName": "reservedRoomSeats",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "reservation",
+      "otherEntityRelationshipName": "reservationTargets",
+      "relationshipName": "reservation",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

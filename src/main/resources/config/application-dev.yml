@@ -18,7 +18,7 @@ logging:
     ROOT: DEBUG
     tech.jhipster: DEBUG
     org.hibernate.SQL: DEBUG
-    com.cocoluluk.myapp: DEBUG
+    com.atensys: DEBUG
 
 eureka:
   instance:
@@ -42,14 +42,14 @@ spring:
     config:
       uri: http://admin:${jhipster.registry.password}@localhost:8761/config
       # name of the config server's property source (file.yml) that we want to use
-      name: testJhipsterApplication
+      name: smartoffice
       profile: dev
       label: main # toggle to switch to a different version of the configuration as stored in git
       # it can be set to any label, branch or commit of the configuration source Git repository
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:file:./build/h2db/db/testjhipsterapplication;DB_CLOSE_DELAY=-1
-    username: testJhipsterApplication
+    url: jdbc:h2:mem:smartoffice;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: smartoffice
     password:
     hikari:
       poolName: Hikari
@@ -63,11 +63,6 @@ spring:
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
-  mail:
-    host: localhost
-    port: 25
-    username:
-    password:
   messages:
     cache-duration: PT1S # 1 second, see the ISO 8601 standard
   thymeleaf:
@@ -88,7 +83,7 @@ spring:
         enabled: true
 
 server:
-  port: 8087
+  port: 8080
 
 # ===================================================================
 # JHipster specific properties
@@ -97,12 +92,16 @@ server:
 # ===================================================================
 
 jhipster:
+  cache: # Cache configuration
+    ehcache: # Ehcache configuration
+      time-to-live-seconds: 3600 # By default objects stay 1 hour in the cache
+      max-entries: 100 # Number of objects in each cache entry
   registry:
     password: admin
   # CORS is only enabled by default with the "dev" profile
   cors:
     # Allow Ionic for JHipster by default (* no longer allowed in Spring Boot 2.4+)
-    allowed-origins: 'http://localhost:8100,https://localhost:8100,http://localhost:9000,https://localhost:9000,http://localhost:9060,https://localhost:9060'
+    allowed-origins: 'http://localhost:8100,https://localhost:8100,http://localhost:9000,https://localhost:9000'
     # Enable CORS when running in GitHub Codespaces
     allowed-origin-patterns: 'https://*.githubpreview.dev'
     allowed-methods: '*'
@@ -110,16 +109,6 @@ jhipster:
     exposed-headers: 'Authorization,Link,X-Total-Count,X-${jhipster.clientApp.name}-alert,X-${jhipster.clientApp.name}-error,X-${jhipster.clientApp.name}-params'
     allow-credentials: true
     max-age: 1800
-  security:
-    authentication:
-      jwt:
-        # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-        base64-secret: NWNlNjhmMWFiZTRlNWI2MGViYTRiMjBiOWJhNWU3ZWVkZWMwOTg4YTQ2NjJkZDZkZjMyNzZkNmQ1NmRlY2Q1M2RmYWM5MjdiMTFiOThmZWM0MGQwMDljNTdmNGRkMmUyNTE1MjI2OGM4OWUyNGI4OGNjMWI5ZjkwNzU3OGE4OGM=
-        # Token is valid 24 hours
-        token-validity-in-seconds: 86400
-        token-validity-in-seconds-for-remember-me: 2592000
-  mail: # specific JHipster mail property, for standard properties see MailProperties
-    base-url: http://127.0.0.1:8087
   logging:
     use-json-format: false # By default, logs are not in Json format
     logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration

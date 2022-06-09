@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Auth.
+    -->
+    <changeSet id="20220609080454-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="tb_auth_id"
+                                 baseTableName="rel_tb_auth__menu"
+                                 constraintName="fk_rel_tb_auth__menu__tb_auth_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tb_auth"/>
+
+        <addForeignKeyConstraint baseColumnNames="menu_id"
+                                 baseTableName="rel_tb_auth__menu"
+                                 constraintName="fk_rel_tb_auth__menu__menu_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tb_menu"/>
+    </changeSet>
+</databaseChangeLog>

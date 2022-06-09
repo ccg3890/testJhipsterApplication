@@ -1,0 +1,38 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080513",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_reservedroomseat",
+  "fields": [
+    {
+      "fieldName": "displayName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "64",
+      "javadoc": "참석자명"
+    },
+    {
+      "fieldName": "companyName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "64",
+      "javadoc": "참석회사명"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "회의실 예약 좌석지정",
+  "jpaMetamodelFiltering": false,
+  "name": "ReservedRoomSeat",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "reservationTarget",
+      "otherEntityRelationshipName": "reservedRoomSeats",
+      "relationshipName": "reservationTarget",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

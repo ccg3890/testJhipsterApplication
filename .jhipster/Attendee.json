@@ -1,0 +1,87 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080512",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_attendee",
+  "fields": [
+    {
+      "fieldName": "attendeeType",
+      "fieldType": "AttendeeType",
+      "fieldTypeJavadoc": "참석자유형",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "INNER (참석자),OUTTER (외부참석자)",
+      "javadoc": "참석자유형"
+    },
+    {
+      "fieldName": "displayName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "64",
+      "javadoc": "참석자명"
+    },
+    {
+      "fieldName": "companyName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "64",
+      "javadoc": "참석회사명"
+    },
+    {
+      "fieldName": "attendeeId",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "32",
+      "javadoc": "참석자ID(사내참석자)"
+    },
+    {
+      "fieldName": "mobileNo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "32",
+      "javadoc": "휴대전화번호"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "128",
+      "fieldValidateRulesPattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$",
+      "javadoc": "이메일"
+    },
+    {
+      "fieldName": "optional",
+      "fieldType": "Boolean",
+      "javadoc": "참석확인제외 여부"
+    },
+    {
+      "fieldName": "comment",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "256",
+      "javadoc": "참석자여부응답 코멘트"
+    },
+    {
+      "fieldName": "responseStatus",
+      "fieldType": "AttendeeResponseStatus",
+      "fieldTypeJavadoc": "참석여부 응답상태",
+      "fieldValues": "NEEDS_ACTION (응답없음),DECLINED (초대거부),TENTATIVE (임시수락),ACCEPTED (수락)",
+      "javadoc": "참석여부응답상태"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "참석자",
+  "jpaMetamodelFiltering": false,
+  "name": "Attendee",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "reservationTarget",
+      "otherEntityRelationshipName": "attendees",
+      "relationshipName": "reservationTarget",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

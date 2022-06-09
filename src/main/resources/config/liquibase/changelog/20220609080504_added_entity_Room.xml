@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Room.
+    -->
+    <changeSet id="20220609080504-1" author="jhipster">
+        <createTable tableName="tb_room" remarks="회의실">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="office_id" type="bigint" remarks="건물">
+                <constraints nullable="false" />
+            </column>
+            <column name="floor_id" type="bigint" remarks="층">
+                <constraints nullable="false" />
+            </column>
+            <column name="name" type="varchar(64)" remarks="회의실명">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="varchar(1024)" remarks="회의실 설명">
+                <constraints nullable="true" />
+            </column>
+            <column name="personnel" type="bigint" remarks="최대예약시간(분)">
+                <constraints nullable="true" />
+            </column>
+            <column name="top" type="bigint" remarks="Y좌표">
+                <constraints nullable="true" />
+            </column>
+            <column name="jhi_left" type="bigint" remarks="X좌표">
+                <constraints nullable="true" />
+            </column>
+            <column name="use_reservation_time" type="boolean" remarks="예약가능시간 사용여부">
+                <constraints nullable="false" />
+            </column>
+            <column name="reservation_available_from_time" type="varchar(5)" remarks="예약가능 시간(from)">
+                <constraints nullable="true" />
+            </column>
+            <column name="reservation_available_to_time" type="varchar(5)" remarks="예약가능 시간(to)">
+                <constraints nullable="true" />
+            </column>
+            <column name="use_approval" type="boolean" remarks="예약관리여부">
+                <constraints nullable="false" />
+            </column>
+            <column name="use_user_available" type="boolean" remarks="사용자예약여부">
+                <constraints nullable="false" />
+            </column>
+            <column name="use_check_in_out" type="boolean" remarks="최대예약시간사용여부">
+                <constraints nullable="false" />
+            </column>
+            <column name="check_in_out_from_time" type="varchar(5)" remarks="입퇴실관리 시간(from)">
+                <constraints nullable="true" />
+            </column>
+            <column name="check_in_out_to_time" type="varchar(5)" remarks="입퇴실관리 시간(to)">
+                <constraints nullable="true" />
+            </column>
+            <column name="valid" type="boolean" remarks="사용가능여부">
+                <constraints nullable="false" />
+            </column>
+            <column name="image_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20220609080504-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/tb_room.csv"
+                  separator=";"
+                  tableName="tb_room"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="office_id" type="numeric"/>
+            <column name="floor_id" type="numeric"/>
+            <column name="name" type="string"/>
+            <column name="description" type="string"/>
+            <column name="personnel" type="numeric"/>
+            <column name="top" type="numeric"/>
+            <column name="jhi_left" type="numeric"/>
+            <column name="use_reservation_time" type="boolean"/>
+            <column name="reservation_available_from_time" type="string"/>
+            <column name="reservation_available_to_time" type="string"/>
+            <column name="use_approval" type="boolean"/>
+            <column name="use_user_available" type="boolean"/>
+            <column name="use_check_in_out" type="boolean"/>
+            <column name="check_in_out_from_time" type="string"/>
+            <column name="check_in_out_to_time" type="string"/>
+            <column name="valid" type="boolean"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

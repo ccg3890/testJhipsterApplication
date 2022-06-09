@@ -1,0 +1,770 @@
+
+application {
+  config {
+    applicationType monolith
+    authenticationType oauth2
+    baseName smartoffice
+    buildTool gradle
+    clientFramework vue
+    enableSwaggerCodegen true
+    languages [en,ko]
+    nativeLanguage ko
+    packageName com.atensys
+    devDatabaseType h2Memory
+    prodDatabaseType mariadb
+    serviceDiscoveryType eureka
+    skipClient true
+  }
+  entities *
+  dto * with mapstruct
+  service * with serviceImpl
+  paginate Reservation with pagination
+}
+
+/** 키워드사전 (키워드 등록 대상 식별은 special/general 여부로 판단) */
+entity Dictionary (tb_dictionary) {
+  /** key */
+  key String required unique maxlength(128)
+  /** 키워드명 */
+  name String required maxlength(64)
+  /** 설명 */
+  discription String maxlength(1024)
+  /** 체크로직(regx) */
+  checkPattern String maxlength(512)
+  /** default */
+  defaultValue String maxlength(256)
+  /** 순서 */
+  orderNo Integer min(0)
+  /** 사용여부 */
+  valid Boolean
+}
+
+/** 속성종류 */
+enum AttributeType {
+  /* 전역설정 */
+  GLOBAL("전역"),
+  /* 회사 */
+  COMPANY("회사"),
+  /* 오피스 */
+  OFFICE("오피스"),
+  /* 층 */
+  FLOOR("층"),
+  /* 회의실 */
+  ROOM("회의실"),
+  /* 좌석 */
+  SEAT("좌석"),
+  /* 락커 */
+  LOCKER("락커")
+}
+
+/** 원형 */
+entity Archetype (tb_archetype){
+  /** 속성종류 */
+  attributeType AttributeType unique required
+  /** 필수여부 */
+  mandantory Boolean required
+  /** 태그 */
+  tag String maxlength(256)
+}
+
+/** 속성(전역,회사,오피스,층,좌석,회의실,라커 등) */
+entity Attribute (tb_attribute) {
+  /** 속성명 */
+  key String required maxlength(128)
+  /** 속성값 */
+  value String required maxlength(256)
+}
+
+/** 회사속성 */
+entity AttributeCompany (tb_attribute_company) {}
+
+/** 오피스속성 */
+entity AttributeOffice (tb_attribute_office) {}
+
+/** 층속성 */
+entity AttributeFloor (tb_attribute_floor) {}
+
+/** 좌석속성 */
+entity AttributeSeat (tb_attribute_seat) {}
+
+/** 회의실속성 */
+entity AttributeRoom (tb_attribute_room) {}
+
+/** 회사 */
+entity Company (tb_company) {
+  /** 회사명 */
+  name String required maxlength(64)
+  /** 회사영문명 */
+  engName String required maxlength(64)
+  /** 회사 설명 */
+  description String maxlength(1024)
+}
+
+/** 오피스 */
+entity Office (tb_office) {
+  /** 오피스 이름 */
+  officeName String required maxlength(50)
+  /** 별칭 */
+  alias String maxlength(50)
+  /** 별칭 접두사 */
+  aliasPrefix String maxlength(50)
+  /** 별칭 접미사 */
+  aliasSuffix String maxlength(50)
+  /** 근무시간 설정여부 */
+  workTimeConfigYn Boolean
+  /** 근무시작시간 */
+  workStartTime String pattern(/^([01][0-9]|2[0-3])([0-5][0-9])+$/)
+  /** 근무종료시간 */
+  workEndTime String pattern(/^([01][0-9]|2[0-3])([0-5][0-9])+$/)
+  /** 노쇼방지 사용여부 (Y or N) */
+  noShowYn Boolean
+  /** 좌석예약 노쇼방지 여부 */
+  noShowPenaltyYn Boolean
+  /** 노쇼 타이머(분) */
+  noShowTimerMinutes Integer
+  /** 노쇼 패널티 기간 */
+  noShowPenaltyDays Integer
+  /** 예약신청 알림 여부 */
+  applyReservationAlarmYn Boolean
+  /** 예약신청 알림 예시문 */
+  applyReservationAlarmTemplate String maxlength(2000)
+  /** 사전입실 알림 여부 */
+  preEntranceAlarmYn Boolean
+  /** 사전입실 알림 간격(분) */
+  preEntranceAlarmInterval Integer
+  /** 사전입실 알림 예시문 */
+  preEntranceAlarmTemplate String maxlength(2000)
+  /** 노쇼 알림 여부 */
+  noShowAlarmYn Boolean
+  /** 노쇼 알림 예시문 */
+  noShowAlarmTemplate String maxlength(2000)
+  /** Y or N */
+  exclusive Boolean
+  /** 복무정보적용여부 (적용: Y, 미적용: N) */
+  useDutyType Boolean
+  /** 임직원검색 사용여부 (Y or N) */
+  useUserSearch Boolean
+  /** Y or N */
+  kioskZoomEnable Boolean
+  /** 예약제한일수 (기본값: 0 무제한) */
+  reservationLimitDay Integer
+  /** 일반 사용자 이용가능 좌석타입들 (see: tb_seat.seat_type) */
+  availableSeatType String maxlength(100)
+  /** 자동 체크인 적용여부 (적용: Y, 미적용: N) */
+  autoCheckInYn Boolean
+}
+
+/** 층 */
+entity Floor (tb_floor) {
+  /** 층 이름 */
+  floorName String maxlength(50)
+  /** 층 설명 */
+  floorDesc String maxlength(500)
+  /** 사용유무 */
+  useYn Boolean
+  /** 정렬 순서 */
+  orderNo Integer
+  /** 도면 이미지 */
+  backgroundImageId String maxlength(36)
+  /** SVG 이미지 */
+  svgImage String maxlength(36)
+}
+
+/** 사용자상태 */
+enum UserStatus {
+  TENURE("재직"),
+  RETIREMENT("퇴직"),
+  LEAVE("휴직"),
+  EXTERNAL("외부용역직")
+}
+
+/** 사용자 */
+entity UserInfo (tb_user) {
+  /** 사용자 아이디(PERNR) */
+  userId String maxlength(20)
+  /** 성명(ENAME) */
+  userName String maxlength(50)
+  /** 패스워드(PWD) */
+  password String maxlength(200)
+  /** 재직상태(PERSG, 1:재직 / 2:퇴직 / 6휴직 / 9:외부용역직) */
+  userStat UserStatus
+  /** 부서코드(ORGEH) */
+  orgCd String maxlength(50)
+  /** 직위 코드(LPOSI) */
+  rankCd String maxlength(50)
+  /** 이메일 */
+  email String maxlength(100)
+  /** 휴대전화번호(MOBILE) */
+  mobile String maxlength(50)
+  /** 전화번호 */
+  telNo String maxlength(50)
+  /** 카드번호 */
+  cardNo String maxlength(10)
+  /** 다중예약가능여부 (Y or N) */
+  multiReservation Boolean
+  /** 신규 사용자 여부 (Y or N) */
+  newbie Boolean
+  /** 파일ID */
+  fileId String maxlength(50)
+  /** 인사연동대상자여부 */
+  hrsync Boolean required
+}
+
+/** 단위 */
+enum UnitType {
+  COUNT("개수"),
+  PERCENT("퍼센트")
+}
+
+/** 부서 */
+entity Org (tb_org) {
+  /** 부서코드 */
+  orgCd String unique maxlength(100)
+  /** 부서명(ORGTX) */
+  orgName String maxlength(200)
+  /** 부서명(ORGTX_EN, 영문) */
+  orgEname String maxlength(200)
+  /** 사용여부(USE_YN, 1:사용, 0:미사용) */
+  useYn Boolean
+  /** 상위부서코드 */
+  upOrgCd String maxlength(100)
+  /** 부서 대표번호(ORGTEL) */
+  orgTel String maxlength(50)
+  /** 근무국가코드(ZREGCODE) */
+  zipCd String maxlength(10)
+  /** 정렬 순서(SORT_NO) */
+  orderNo Double
+  /** 계층부서코드 */
+  hierachyCode String maxlength(256)
+  /** 계층부서명 */
+  hierachyName String maxlength(256)
+  /** 부서 좌석제한 퍼센트 혹은 갯수 */
+  seatLimit Integer
+  /** 좌석제한단위(PERCENT or NUMBER) */
+  seatLimitUnit UnitType
+}
+
+/** 직급 */
+entity Rank (tb_rank) {
+  /** 직책코드 */
+  rankCd String unique maxlength(50)
+  /** 직책 명 */
+  rankName String maxlength(200)
+  /** 직책 영문명 */
+  rankEname String maxlength(200)
+  /** 사용여부 */
+  useYn Boolean
+}
+
+/** 페널티 */
+entity Penalty (tb_penalty) {
+  /** 사용자ID */
+  userId String maxlength(20)
+  /** 오피스ID */
+  officeId String maxlength(20)
+  /** 좌석예약 제한 시작일 */
+  startDate LocalDate
+  /** 좌석예약 제한 종료일 */
+  endDate LocalDate
+}
+
+/** 권한 */
+entity Auth (tb_auth) {
+  /** 권한명 */
+  authName String required maxlength(100)
+  /** 기본권한여부 */
+  defaultAuth Boolean
+  /** 사용여부 */
+  valid Boolean required
+}
+
+/** 메뉴 */
+entity Menu (tb_menu) {
+  /** 메뉴레벨 */
+  menuDepth Integer required min(0)
+  /** 메뉴명 */
+  menuName String required maxlength(50)
+  /** 메뉴 URL */
+  menuUrl String maxlength(256)
+  /** 메뉴정렬순서 */
+  orderNo Integer min(0)
+  /** 사용여부 */
+  valid Boolean required
+  /** 메뉴 이미지 */
+  menuImageId String maxlength(256)
+}
+
+/** 코드유형 */
+enum CodeType {
+  STRING("문자열형"),
+  NUMBER("숫자형"),
+  OBJECT("객체형"),
+  ARRAY("배열형")
+}
+
+/** 설정 */
+entity Config (tb_config) {
+  /** 설정ID */
+  configId Long unique required
+  /** 부모ID */
+  parentId Long
+  /** 코드 */
+  code String required maxlength(50)
+  /** 코드타입 */
+  codeType CodeType required
+  /** 값 */
+  value String required maxlength(2048)
+  /** 설명 */
+  description String maxlength(2048)
+  /** 사용여부 */
+  useYn Boolean
+}
+
+/** 도형종류 */
+enum ShapeType {
+  RECTANGLE("사각형"),
+  TRIANBLE("삼각형"),
+  PENTAGON("오각형"),
+  HEXAGON("육각형"),
+  OCTAGON("팔각형"),
+  ELLIPSE("타원"),
+  STAR("별"),
+  CUSTOM("사용자정의")
+}
+
+/** 도형 */
+entity Shape (tb_shape) {
+  /** 도형명 */
+  name String maxlength(50)
+  /** 도형종류 */
+  shapeType ShapeType required
+  /** SVG Path */
+  path String maxlength(2048)
+  /** 사용여부 */
+  valid Boolean required
+}
+
+/** 도형자산유형 */
+enum ShapeAssetType {
+  SEAT("좌석"),
+  ROOM("회의실"),
+  LOCKER("사물함")
+}
+
+/** 세로정렬방법 */
+enum AlignVertical {
+  TOP("맨위"),
+  MIDDLE("중간"),
+  BOTTOM("맨아래")
+}
+
+/** 도형이미지구분 */
+enum ShapeImageType {
+  VECTOR("벡터"),
+  IMAGE("이미지")
+}
+
+/** 도형자산 */
+entity ShapeAsset (tb_shapeasset) {
+  /** 도형자산명 */
+  name String maxlength(100)
+  /** 도형자산유형 */
+  assetType ShapeAssetType required
+  /** 도형이미지구분 */
+  shapeImageType ShapeImageType required
+  /** 폭 */
+  width Long required min(0)
+  /** 높이 */
+  height Long required min(0)
+  /** 세로정렬방법 */
+  textAlign AlignVertical
+  /** 도형스타일 */
+  shapeStyle String maxlength(2048)
+  /** 텍스트스타일 */
+  textStyle String maxlength(2048)
+  /** 크기 조절 여부 */
+  scalable Boolean required
+  /** 사용여부 */
+  useYn Boolean
+}
+
+/** 도면 */
+entity Drawing (tb_drawing) {
+  /** 도면명 */
+  name String maxlength(100)
+}
+
+/** 도면아이템 */
+entity DrawingItem (tb_drawingitem) {
+  /** 도면아이템명 */
+  name String maxlength(100)
+  /** Y좌표 */
+  top Long min(0)
+  /** X좌표 */
+  left Long min(0)
+}
+
+/** 파일정보 */
+entity Fileinfo (tb_fileinfo) {
+  /** 원래 파일명 */
+  origFileName String required maxlength(256)
+  /** 저장된 파일명 */
+  fileName String required maxlength(256)
+  /** 파일 저장 위치 */
+  filePath String required maxlength(1024)
+  /** Multipurpose Internet Mail Extensions 종류 */
+  mimeType String maxlength(128)
+  /** size */
+  fileSize Long min(0)
+}
+
+/** 자원(좌석,회의실,라커 등) */
+entity Resource (tb_resource) {
+  /** 도면아이템명 */
+  name String maxlength(100)
+  
+  /** 사용가능여부 */
+  useYn Boolean required
+}
+
+/** 좌석유형 */
+enum SeatType {
+  FULL("종일제"),
+  PART("시간제"),
+  PERIOD("기간제")
+}
+
+/** 좌석부가유형 */
+enum SeatSubType {
+  NORMAL("일반석"),
+  COLABORATION("협업석"),
+  FOCUS("집중석"),
+  STANDING("높낮이석")
+}
+
+/** 좌석 */
+entity Seat (tb_seat) {
+  /** 건물 */
+  officeId Long required
+  /** 층 */
+  floorId Long required
+
+  /** 좌석유형 */
+  seatType SeatType required
+  /** 좌석명 */
+  seatName String required maxlength(20)
+  /** 좌석유형 */
+  seatType SeatType required
+  /** 좌석부가유형 */
+  seatSubType SeatSubType required
+  /** 사용가능여부 */
+  useYn Boolean required
+  /** Y좌표 */
+  top Long min(0)
+  /** X좌표 */
+  left Long min(0)
+}
+
+/** 회의실 */
+entity Room (tb_room) {
+  /** 건물 */
+  officeId Long required
+  /** 층 */
+  floorId Long required
+
+  /** 회의실명 */
+  name String required maxlength(64)
+  /** 회의실 설명 */
+  description String maxlength(1024)
+  
+  /** 인원 */
+  personnel Long min(1) max(999)
+  
+  /** Y좌표 */
+  top Long min(0)
+  /** X좌표 */
+  left Long min(0)
+  
+  /** 예약가능시간 사용여부 */
+  useReservationTime Boolean required
+  /** 예약가능 시간(from) */
+  reservationAvailableFromTime String minlength(5) maxlength(5) pattern(/^([01][0-9]|2[0-3]):([0-5][0-9])+$/)
+  /** 예약가능 시간(to) */
+  reservationAvailableToTime String minlength(5) maxlength(5) pattern(/^([01][0-9]|2[0-3]):([0-5][0-9])+$/)
+  
+  /** 예약관리여부 */
+  useApproval Boolean required
+  
+  /** 사용자예약여부 */
+  useUserAvailable Boolean required
+  
+  /** 입퇴실관리 */
+  useCheckInOut Boolean required
+  /** 입퇴실관리 시간(from) */
+  checkInOutFromTime String minlength(5) maxlength(5) pattern(/^([01][0-9]|2[0-3]):([0-5][0-9])+$/)
+  /** 입퇴실관리 시간(to) */
+  checkInOutToTime String minlength(5) maxlength(5) pattern(/^([01][0-9]|2[0-3]):([0-5][0-9])+$/)
+  
+  /** 최대예약시간사용여부 */
+  useCheckInOut Boolean required
+  /** 최대예약시간(분) */
+  personnel Long max(1420)
+
+  /** 사용가능여부 */
+  valid Boolean required
+}
+
+/** 회의실 좌석 */
+entity RoomSeat (tb_roomseat) {
+  /** 회의실 좌석명 */
+  name String required maxlength(64)
+  /** 회의실 좌석 설명 */
+  description String maxlength(1024)
+  
+  /** Y좌표 */
+  top Long min(0)
+  /** X좌표 */
+  left Long min(0)
+  
+  /** 사용가능여부 */
+  valid Boolean required
+}
+
+/** 회의실 관리자 */
+entity RoomManager (tb_roommanager) {
+  /** 관리자ID */
+  managerId String maxlength(32)
+  /** 관리자명 */
+  name String required maxlength(64)
+}
+
+/** 회의실 사용자 그룹 */
+entity RoomUserGroup (tb_roomusergroup) {
+  /** 그룹(조직)ID */
+  groupId String required maxlength(32)
+  /** 그룹(조직)명 */
+  name String required maxlength(64)
+}
+
+/** 예약상태유형 */
+enum ResvStatusType {
+  RESERVED("예약"),
+  COMFIRMED("예약확정"),
+  CANCELLED("취소"),
+  AUTO_CANCELED("자동취소"),
+  ENTRANCE("입실"),
+  LEAVING("퇴실")
+}
+
+/** 반복주기유형 */
+enum FrequenceType {
+  DAILY("매일"),
+  WEEKLY("매주"),
+  MONTHLY("매월"),
+  YEARLY("매년"),
+  WEEKDAY("주중 매일")
+}
+
+/** 예약반복종료유형 */
+enum EndConditionType {
+  NONE("없음"),
+  DATE("날짜"),
+  STEP("횟수")
+}
+
+/** 예약정보 */
+entity Reservation (tb_reservation) {
+  /** 예약명 */
+  title String required maxlength(128)
+  /** 예약설명 */
+  description String maxlength(1024)
+
+  /** 예약상태 */
+  status ResvStatusType required
+
+  /** 주최자ID */
+  organizerId String required maxlength(32)
+  /** 주최자명 */
+  organizerName String required maxlength(64)
+
+  /** 예약시작일시 */
+  startDateTime LocalDate required
+  /** 예약종료일시 */
+  endDateTime LocalDate required
+  
+  /** 온종일 사용 여부 */
+  useAllDay Boolean required
+  /** 반복사용여부 */
+  useRecurrence Boolean required
+  /** 참석여부응답 사용여부 */
+  useResponse Boolean required
+  
+  /** 회의실 PIN 번호 */
+  pin String maxlength(128)
+}
+
+/** 반복구조 */
+//@embedded
+entity Recurrence (tb_recurrence) {
+  /** 반복유형 */
+  freq FrequenceType required
+  
+  /**
+    * WEEKLY, MONTHLY
+    * MO, TU, WE, TH, FR, SA, SU
+    */
+  daysOfWeek String maxlength(32)
+  
+  /** 
+    * 매월 특정주
+    * 이경우 daysOfWeek의 특정 요일과 같이 사용해야 함
+    */
+  weekOfMonth Integer min(0) max(4)
+  /** 매월 특정일 */
+  dayOfMonth Integer min(1) max(31)
+  
+  /** YEARLY */
+  dayOfYear Integer min(1) max(365)
+  
+  /** 반복종료유형 */
+  endCondition EndConditionType required
+  /** 반복종료일자 */
+  endDateTime LocalDate
+  /** 반복회수 */
+  numOfStep Integer min(1) max(99)
+}
+
+/** 예약일시체크를 위한 예약일 */
+entity ReservedDate (tb_reserveddate) {
+  /** 예약일시(시작) */
+  startDateTime LocalDate required
+  /** 예약일시(종료) */
+  endDateTime LocalDate required
+  
+  /** 반복 예약으로 발생된 회차번호 */
+  step Integer
+}
+
+/** 예약대상(회의실, 좌석, 등등) */
+entity ReservationTarget (tb_reservationtarget) {}
+
+/** 참석여부 응답상태 */
+enum AttendeeResponseStatus {
+  NEEDS_ACTION("응답없음"),
+  DECLINED("초대거부"),
+  TENTATIVE("임시수락"),
+  ACCEPTED("수락")
+}
+
+/** 참석자유형 */
+enum AttendeeType {
+  INNER("참석자"),
+  OUTTER("외부참석자")
+}
+
+/** 참석자 */
+entity Attendee (tb_attendee) {
+  /** 참석자유형 */
+  attendeeType AttendeeType required
+  
+  /** 참석자명 */
+  displayName String required maxlength(64)
+  /** 참석회사명 */
+  companyName String maxlength(64)
+  /** 참석자ID(사내참석자) */
+  attendeeId String maxlength(32)
+  
+  /** 휴대전화번호 */
+  mobileNo String required maxlength(32)
+  /** 이메일 */
+  email String maxlength(128) pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
+  
+  /** 참석확인제외 여부 */
+  optional Boolean
+  /** 참석자여부응답 코멘트 */
+  comment String maxlength(256)
+  /** 참석여부응답상태 */
+  responseStatus AttendeeResponseStatus
+}
+
+/** 회의실 예약 좌석지정 */
+entity ReservedRoomSeat (tb_reservedroomseat) {
+  /** 참석자명 */
+  displayName String required maxlength(64)
+  /** 참석회사명 */
+  companyName String maxlength(64)
+}
+
+relationship OneToOne {
+  Reservation{recurrence} to Recurrence
+  
+  ReservationTarget{resource} to Resource
+//  ReservationTarget{room} to Room
+//  ReservationTarget{seat} to Seat
+  
+//  Seat{shapeAsset} to ShapeAsset
+//  Room{shapeAsset} to ShapeAsset
+}
+
+relationship OneToMany {
+  Config{children} to Config{parent}
+  Org{children} to Org{parent}
+  Menu{children} to Menu{parent}
+  
+  Company{orgs} to Org
+  
+  UserInfo{penalties} to Penalty
+  
+  Company{offices} to Office
+  Office{floors} to Floor
+  
+  Floor{resource} to Resource
+//  Floor{seats} to Seat
+//  Floor{rooms} to Room
+  
+  Room{roomManagers} to RoomManager
+  Room{roomUserGroups} to RoomUserGroup
+  Room{roomSeats} to RoomSeat
+  
+  Company{attributes} to AttributeCompany
+  Office{attributes} to AttributeOffice
+  Floor{attributes} to AttributeFloor
+  Seat{attributes} to AttributeSeat
+  Room{attributes} to AttributeRoom
+  
+  Reservation{reservationTargets} to ReservationTarget
+  Reservation{reservedDates} to ReservedDate
+  
+  ReservationTarget{attendees} to Attendee
+  ReservationTarget{reservedRoomSeats} to ReservedRoomSeat
+  
+  Drawing{drawingItems} to DrawingItem
+}
+
+relationship ManyToOne {  
+  UserInfo{company} to Company
+  UserInfo{org} to Org
+  UserInfo{rank} to Rank
+
+  UserInfo{file} to Fileinfo
+  Floor{webImg} to Fileinfo
+  Floor{kioskImg} to Fileinfo
+  Floor{miniImg} to Fileinfo
+  Room{image} to Fileinfo
+
+  Attribute{dictionary} to Dictionary
+  
+  ShapeAsset{shape} to Shape
+  DrawingItem{shapeAsset} to ShapeAsset
+  
+  Floor{drawing} to Drawing
+  DrawingItem{resource} to Resource
+//  DrawingItem{seat} to Seat
+//  DrawingItem{room} to Room
+}
+
+relationship ManyToMany {
+  UserInfo to Auth
+  Auth to Menu
+  Archetype to Dictionary
+}

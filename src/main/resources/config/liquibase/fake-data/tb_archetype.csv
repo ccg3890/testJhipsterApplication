@@ -1,0 +1,8 @@
+id;attribute_type;mandantory;tag
+1;FLOOR;true;Belgium Borders
+2;GLOBAL;true;Centralized
+3;ROOM;true;iterate
+4;SEAT;true;platforms panel invoice
+5;OFFICE;false;Ethiopian Rufiyaa Producer
+6;LOCKER;false;동
+7;COMPANY;true;context-sensitive matrix

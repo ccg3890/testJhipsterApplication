@@ -1,0 +1,58 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080505",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_roomseat",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "64",
+      "javadoc": "회의실 좌석명"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "1024",
+      "javadoc": "회의실 좌석 설명"
+    },
+    {
+      "fieldName": "top",
+      "fieldType": "Long",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0",
+      "javadoc": "Y좌표"
+    },
+    {
+      "fieldName": "left",
+      "fieldType": "Long",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0",
+      "javadoc": "X좌표"
+    },
+    {
+      "fieldName": "valid",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"],
+      "javadoc": "사용가능여부"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "회의실 좌석",
+  "jpaMetamodelFiltering": false,
+  "name": "RoomSeat",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "room",
+      "otherEntityRelationshipName": "roomSeats",
+      "relationshipName": "room",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,38 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080506",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_roommanager",
+  "fields": [
+    {
+      "fieldName": "managerId",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "32",
+      "javadoc": "관리자ID"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "64",
+      "javadoc": "관리자명"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "회의실 관리자",
+  "jpaMetamodelFiltering": false,
+  "name": "RoomManager",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "room",
+      "otherEntityRelationshipName": "roomManagers",
+      "relationshipName": "room",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

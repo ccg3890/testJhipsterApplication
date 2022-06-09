@@ -9,7 +9,7 @@ pluginManagement {
         id 'org.springframework.boot' version "${springBootVersion}"
         id 'com.google.cloud.tools.jib' version "${jibPluginVersion}"
         id 'com.gorylenko.gradle-git-properties' version "${gitPropertiesPluginVersion}"
-        id 'com.github.node-gradle.node' version "${gradleNodePluginVersion}"
+        id "org.openapi.generator" version "${openapiPluginVersion}"
         id 'org.liquibase.gradle' version "${liquibasePluginVersion}"
         id 'org.sonarqube' version "${sonarqubePluginVersion}"
         id "io.spring.nohttp" version "${noHttpCheckstyleVersion}"
@@ -18,4 +18,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "test-jhipster-application"
+rootProject.name = "smartoffice"

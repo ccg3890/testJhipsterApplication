@@ -1,0 +1,23 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080442",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_attribute_company",
+  "fields": [],
+  "fluentMethods": true,
+  "javadoc": "회사속성",
+  "jpaMetamodelFiltering": false,
+  "name": "AttributeCompany",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "company",
+      "otherEntityRelationshipName": "attributes",
+      "relationshipName": "company",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -15,7 +15,69 @@
     <property name="datetimeType" value="datetime" dbms="oracle, mssql, postgresql, h2"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080439_added_entity_Dictionary.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080440_added_entity_Archetype.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080441_added_entity_Attribute.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080442_added_entity_AttributeCompany.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080443_added_entity_AttributeOffice.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080444_added_entity_AttributeFloor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080445_added_entity_AttributeSeat.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080446_added_entity_AttributeRoom.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080447_added_entity_Company.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080448_added_entity_Office.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080449_added_entity_Floor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080450_added_entity_UserInfo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080451_added_entity_Org.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080452_added_entity_Rank.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080453_added_entity_Penalty.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080454_added_entity_Auth.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080455_added_entity_Menu.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080456_added_entity_Config.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080457_added_entity_Shape.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080458_added_entity_ShapeAsset.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080459_added_entity_Drawing.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080500_added_entity_DrawingItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080501_added_entity_Fileinfo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080502_added_entity_Resource.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080503_added_entity_Seat.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080504_added_entity_Room.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080505_added_entity_RoomSeat.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080506_added_entity_RoomManager.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080507_added_entity_RoomUserGroup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080508_added_entity_Reservation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080509_added_entity_Recurrence.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080510_added_entity_ReservedDate.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080511_added_entity_ReservationTarget.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080512_added_entity_Attendee.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080513_added_entity_ReservedRoomSeat.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20220609080440_added_entity_constraints_Archetype.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080441_added_entity_constraints_Attribute.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080442_added_entity_constraints_AttributeCompany.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080443_added_entity_constraints_AttributeOffice.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080444_added_entity_constraints_AttributeFloor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080445_added_entity_constraints_AttributeSeat.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080446_added_entity_constraints_AttributeRoom.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080448_added_entity_constraints_Office.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080449_added_entity_constraints_Floor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080450_added_entity_constraints_UserInfo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080451_added_entity_constraints_Org.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080453_added_entity_constraints_Penalty.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080454_added_entity_constraints_Auth.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080455_added_entity_constraints_Menu.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080456_added_entity_constraints_Config.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080458_added_entity_constraints_ShapeAsset.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080500_added_entity_constraints_DrawingItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080502_added_entity_constraints_Resource.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080504_added_entity_constraints_Room.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080505_added_entity_constraints_RoomSeat.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080506_added_entity_constraints_RoomManager.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080507_added_entity_constraints_RoomUserGroup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080508_added_entity_constraints_Reservation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080510_added_entity_constraints_ReservedDate.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080511_added_entity_constraints_ReservationTarget.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080512_added_entity_constraints_Attendee.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220609080513_added_entity_constraints_ReservedRoomSeat.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

@@ -1,0 +1,38 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080441",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_attribute",
+  "fields": [
+    {
+      "fieldName": "key",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "128",
+      "javadoc": "속성명"
+    },
+    {
+      "fieldName": "value",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "256",
+      "javadoc": "속성값"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "속성(전역,회사,오피스,층,좌석,회의실,라커 등)",
+  "jpaMetamodelFiltering": false,
+  "name": "Attribute",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "dictionary",
+      "otherEntityRelationshipName": "attribute",
+      "relationshipName": "dictionary",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

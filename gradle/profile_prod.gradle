@@ -23,10 +23,6 @@ bootRun {
     args = []
 }
 
-task webapp(type: NpmTask, dependsOn: "npm_install") {
-    args = ["run", "webapp:prod"]
-    environment = [APP_VERSION: project.version]
-}
 
 processResources {
     inputs.property('version', version)
@@ -43,5 +39,3 @@ processResources {
     }
 }
 
-processResources.dependsOn webapp
-bootJar.dependsOn processResources
