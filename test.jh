@@ -1,0 +1,14 @@
+
+/** Rutine esay*/
+entity RoutineMain {
+	id String required
+    registerid String required
+    description String
+}
+
+entity Routine {
+	 id String required
+     register String required
+     type String required
+     desc String
+}
