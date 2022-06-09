@@ -1,0 +1,31 @@
+{
+  "applications": "*",
+  "changelogDate": "20220609072602",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "routine_main",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "registerid",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Rutine esay",
+  "jpaMetamodelFiltering": false,
+  "name": "RoutineMain",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}
