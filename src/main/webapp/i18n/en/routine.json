@@ -1,0 +1,26 @@
+{
+  "testJhipsterApplicationApp": {
+    "routine": {
+      "home": {
+        "title": "Routines",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Routine",
+        "createOrEditLabel": "Create or edit a Routine",
+        "notFound": "No Routines found"
+      },
+      "created": "A new Routine is created with identifier {{ param }}",
+      "updated": "A Routine is updated with identifier {{ param }}",
+      "deleted": "A Routine is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Routine {{ id }}?"
+      },
+      "detail": {
+        "title": "Routine"
+      },
+      "id": "Id",
+      "register": "Register",
+      "type": "Type",
+      "desc": "Desc"
+    }
+  }
+}
