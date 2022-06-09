@@ -1,0 +1,23 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080446",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_attribute_room",
+  "fields": [],
+  "fluentMethods": true,
+  "javadoc": "회의실속성",
+  "jpaMetamodelFiltering": false,
+  "name": "AttributeRoom",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "room",
+      "otherEntityRelationshipName": "attributes",
+      "relationshipName": "room",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

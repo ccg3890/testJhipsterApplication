@@ -1,0 +1,43 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080452",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_rank",
+  "fields": [
+    {
+      "fieldName": "rankCd",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique", "maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "javadoc": "직책코드"
+    },
+    {
+      "fieldName": "rankName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200",
+      "javadoc": "직책 명"
+    },
+    {
+      "fieldName": "rankEname",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200",
+      "javadoc": "직책 영문명"
+    },
+    {
+      "fieldName": "useYn",
+      "fieldType": "Boolean",
+      "javadoc": "사용여부"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "직급",
+  "jpaMetamodelFiltering": false,
+  "name": "Rank",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,77 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080509",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_recurrence",
+  "fields": [
+    {
+      "fieldName": "freq",
+      "fieldType": "FrequenceType",
+      "fieldTypeJavadoc": "반복주기유형",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "DAILY (매일),WEEKLY (매주),MONTHLY (매월),YEARLY (매년),WEEKDAY (주중 매일)",
+      "javadoc": "반복유형"
+    },
+    {
+      "fieldName": "daysOfWeek",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "32",
+      "javadoc": "WEEKLY, MONTHLY\\nMO, TU, WE, TH, FR, SA, SU"
+    },
+    {
+      "fieldName": "weekOfMonth",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "4",
+      "fieldValidateRulesMin": "0",
+      "javadoc": "매월 특정주\\n이경우 daysOfWeek의 특정 요일과 같이 사용해야 함"
+    },
+    {
+      "fieldName": "dayOfMonth",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "31",
+      "fieldValidateRulesMin": "1",
+      "javadoc": "매월 특정일"
+    },
+    {
+      "fieldName": "dayOfYear",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "365",
+      "fieldValidateRulesMin": "1",
+      "javadoc": "YEARLY"
+    },
+    {
+      "fieldName": "endCondition",
+      "fieldType": "EndConditionType",
+      "fieldTypeJavadoc": "예약반복종료유형",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "NONE (없음),DATE (날짜),STEP (횟수)",
+      "javadoc": "반복종료유형"
+    },
+    {
+      "fieldName": "endDateTime",
+      "fieldType": "LocalDate",
+      "javadoc": "반복종료일자"
+    },
+    {
+      "fieldName": "numOfStep",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "99",
+      "fieldValidateRulesMin": "1",
+      "javadoc": "반복회수"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "반복구조",
+  "jpaMetamodelFiltering": false,
+  "name": "Recurrence",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,11 @@
+id;freq;days_of_week;week_of_month;day_of_month;day_of_year;end_condition;end_date_time;num_of_step
+1;WEEKLY;French;4;16;11;NONE;2022-06-08;12
+2;WEEKLY;attitude Intuitive 경기;1;14;232;STEP;2022-06-09;68
+3;DAILY;Peso Rustic;0;13;222;DATE;2022-06-09;93
+4;WEEKLY;Planner portals Chicken;3;11;126;STEP;2022-06-08;91
+5;YEARLY;Tonga fuchsia Multi-channelled;2;23;266;STEP;2022-06-09;36
+6;WEEKDAY;Barbados forecast zero;0;8;127;NONE;2022-06-09;97
+7;MONTHLY;card;3;16;209;STEP;2022-06-09;33
+8;WEEKLY;Honduras Accountability bypassin;0;20;193;STEP;2022-06-09;46
+9;DAILY;Gloves payment National;4;9;241;STEP;2022-06-09;66
+10;MONTHLY;silver hybrid;1;1;28;DATE;2022-06-09;52

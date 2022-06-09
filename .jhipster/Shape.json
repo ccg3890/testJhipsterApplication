@@ -1,0 +1,45 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080457",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_shape",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "javadoc": "도형명"
+    },
+    {
+      "fieldName": "shapeType",
+      "fieldType": "ShapeType",
+      "fieldTypeJavadoc": "도형종류",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "RECTANGLE (사각형),TRIANBLE (삼각형),PENTAGON (오각형),HEXAGON (육각형),OCTAGON (팔각형),ELLIPSE (타원),STAR (별),CUSTOM (사용자정의)",
+      "javadoc": "도형종류"
+    },
+    {
+      "fieldName": "path",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "2048",
+      "javadoc": "SVG Path"
+    },
+    {
+      "fieldName": "valid",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"],
+      "javadoc": "사용여부"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "도형",
+  "jpaMetamodelFiltering": false,
+  "name": "Shape",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

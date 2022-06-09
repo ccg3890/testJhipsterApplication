@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Floor.
+    -->
+    <changeSet id="20220609080449-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="web_img_id"
+                                 baseTableName="tb_floor"
+                                 constraintName="fk_tb_floor__web_img_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tb_fileinfo"/>
+
+        <addForeignKeyConstraint baseColumnNames="kiosk_img_id"
+                                 baseTableName="tb_floor"
+                                 constraintName="fk_tb_floor__kiosk_img_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tb_fileinfo"/>
+
+        <addForeignKeyConstraint baseColumnNames="mini_img_id"
+                                 baseTableName="tb_floor"
+                                 constraintName="fk_tb_floor__mini_img_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tb_fileinfo"/>
+
+        <addForeignKeyConstraint baseColumnNames="drawing_id"
+                                 baseTableName="tb_floor"
+                                 constraintName="fk_tb_floor__drawing_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tb_drawing"/>
+
+        <addForeignKeyConstraint baseColumnNames="office_id"
+                                 baseTableName="tb_floor"
+                                 constraintName="fk_tb_floor__office_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tb_office"/>
+    </changeSet>
+</databaseChangeLog>

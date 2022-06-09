@@ -1,0 +1,148 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080450",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_user",
+  "fields": [
+    {
+      "fieldName": "userId",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "20",
+      "javadoc": "사용자 아이디(PERNR)"
+    },
+    {
+      "fieldName": "userName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "javadoc": "성명(ENAME)"
+    },
+    {
+      "fieldName": "password",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200",
+      "javadoc": "패스워드(PWD)"
+    },
+    {
+      "fieldName": "userStat",
+      "fieldType": "UserStatus",
+      "fieldTypeJavadoc": "사용자상태",
+      "fieldValues": "TENURE (재직),RETIREMENT (퇴직),LEAVE (휴직),EXTERNAL (외부용역직)",
+      "javadoc": "재직상태(PERSG, 1:재직 / 2:퇴직 / 6휴직 / 9:외부용역직)"
+    },
+    {
+      "fieldName": "orgCd",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "javadoc": "부서코드(ORGEH)"
+    },
+    {
+      "fieldName": "rankCd",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "javadoc": "직위 코드(LPOSI)"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100",
+      "javadoc": "이메일"
+    },
+    {
+      "fieldName": "mobile",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "javadoc": "휴대전화번호(MOBILE)"
+    },
+    {
+      "fieldName": "telNo",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "javadoc": "전화번호"
+    },
+    {
+      "fieldName": "cardNo",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "10",
+      "javadoc": "카드번호"
+    },
+    {
+      "fieldName": "multiReservation",
+      "fieldType": "Boolean",
+      "javadoc": "다중예약가능여부 (Y or N)"
+    },
+    {
+      "fieldName": "newbie",
+      "fieldType": "Boolean",
+      "javadoc": "신규 사용자 여부 (Y or N)"
+    },
+    {
+      "fieldName": "fileId",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "javadoc": "파일ID"
+    },
+    {
+      "fieldName": "hrsync",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"],
+      "javadoc": "인사연동대상자여부"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "사용자",
+  "jpaMetamodelFiltering": false,
+  "name": "UserInfo",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "penalty",
+      "otherEntityRelationshipName": "userInfo",
+      "relationshipName": "penalties",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "company",
+      "otherEntityRelationshipName": "userInfo",
+      "relationshipName": "company",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "org",
+      "otherEntityRelationshipName": "userInfo",
+      "relationshipName": "org",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "rank",
+      "otherEntityRelationshipName": "userInfo",
+      "relationshipName": "rank",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "fileinfo",
+      "otherEntityRelationshipName": "userInfo",
+      "relationshipName": "file",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "auth",
+      "otherEntityRelationshipName": "userInfo",
+      "ownerSide": true,
+      "relationshipName": "auth",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,181 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080448",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_office",
+  "fields": [
+    {
+      "fieldName": "officeName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "javadoc": "오피스 이름"
+    },
+    {
+      "fieldName": "alias",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "javadoc": "별칭"
+    },
+    {
+      "fieldName": "aliasPrefix",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "javadoc": "별칭 접두사"
+    },
+    {
+      "fieldName": "aliasSuffix",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "javadoc": "별칭 접미사"
+    },
+    {
+      "fieldName": "workTimeConfigYn",
+      "fieldType": "Boolean",
+      "javadoc": "근무시간 설정여부"
+    },
+    {
+      "fieldName": "workStartTime",
+      "fieldType": "String",
+      "fieldValidateRules": ["pattern"],
+      "fieldValidateRulesPattern": "^([01][0-9]|2[0-3])([0-5][0-9])+$",
+      "javadoc": "근무시작시간"
+    },
+    {
+      "fieldName": "workEndTime",
+      "fieldType": "String",
+      "fieldValidateRules": ["pattern"],
+      "fieldValidateRulesPattern": "^([01][0-9]|2[0-3])([0-5][0-9])+$",
+      "javadoc": "근무종료시간"
+    },
+    {
+      "fieldName": "noShowYn",
+      "fieldType": "Boolean",
+      "javadoc": "노쇼방지 사용여부 (Y or N)"
+    },
+    {
+      "fieldName": "noShowPenaltyYn",
+      "fieldType": "Boolean",
+      "javadoc": "좌석예약 노쇼방지 여부"
+    },
+    {
+      "fieldName": "noShowTimerMinutes",
+      "fieldType": "Integer",
+      "javadoc": "노쇼 타이머(분)"
+    },
+    {
+      "fieldName": "noShowPenaltyDays",
+      "fieldType": "Integer",
+      "javadoc": "노쇼 패널티 기간"
+    },
+    {
+      "fieldName": "applyReservationAlarmYn",
+      "fieldType": "Boolean",
+      "javadoc": "예약신청 알림 여부"
+    },
+    {
+      "fieldName": "applyReservationAlarmTemplate",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "2000",
+      "javadoc": "예약신청 알림 예시문"
+    },
+    {
+      "fieldName": "preEntranceAlarmYn",
+      "fieldType": "Boolean",
+      "javadoc": "사전입실 알림 여부"
+    },
+    {
+      "fieldName": "preEntranceAlarmInterval",
+      "fieldType": "Integer",
+      "javadoc": "사전입실 알림 간격(분)"
+    },
+    {
+      "fieldName": "preEntranceAlarmTemplate",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "2000",
+      "javadoc": "사전입실 알림 예시문"
+    },
+    {
+      "fieldName": "noShowAlarmYn",
+      "fieldType": "Boolean",
+      "javadoc": "노쇼 알림 여부"
+    },
+    {
+      "fieldName": "noShowAlarmTemplate",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "2000",
+      "javadoc": "노쇼 알림 예시문"
+    },
+    {
+      "fieldName": "exclusive",
+      "fieldType": "Boolean",
+      "javadoc": "Y or N"
+    },
+    {
+      "fieldName": "useDutyType",
+      "fieldType": "Boolean",
+      "javadoc": "복무정보적용여부 (적용: Y, 미적용: N)"
+    },
+    {
+      "fieldName": "useUserSearch",
+      "fieldType": "Boolean",
+      "javadoc": "임직원검색 사용여부 (Y or N)"
+    },
+    {
+      "fieldName": "kioskZoomEnable",
+      "fieldType": "Boolean",
+      "javadoc": "Y or N"
+    },
+    {
+      "fieldName": "reservationLimitDay",
+      "fieldType": "Integer",
+      "javadoc": "예약제한일수 (기본값: 0 무제한)"
+    },
+    {
+      "fieldName": "availableSeatType",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100",
+      "javadoc": "일반 사용자 이용가능 좌석타입들 (see: tb_seat.seat_type)"
+    },
+    {
+      "fieldName": "autoCheckInYn",
+      "fieldType": "Boolean",
+      "javadoc": "자동 체크인 적용여부 (적용: Y, 미적용: N)"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "오피스",
+  "jpaMetamodelFiltering": false,
+  "name": "Office",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "floor",
+      "otherEntityRelationshipName": "office",
+      "relationshipName": "floors",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "attributeOffice",
+      "otherEntityRelationshipName": "office",
+      "relationshipName": "attributes",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "company",
+      "otherEntityRelationshipName": "offices",
+      "relationshipName": "company",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

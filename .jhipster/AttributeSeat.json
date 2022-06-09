@@ -1,0 +1,23 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080445",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_attribute_seat",
+  "fields": [],
+  "fluentMethods": true,
+  "javadoc": "좌석속성",
+  "jpaMetamodelFiltering": false,
+  "name": "AttributeSeat",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "seat",
+      "otherEntityRelationshipName": "attributes",
+      "relationshipName": "seat",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

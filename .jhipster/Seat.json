@@ -1,0 +1,79 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080503",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_seat",
+  "fields": [
+    {
+      "fieldName": "officeId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"],
+      "javadoc": "건물"
+    },
+    {
+      "fieldName": "floorId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"],
+      "javadoc": "층"
+    },
+    {
+      "fieldName": "seatType",
+      "fieldType": "SeatType",
+      "fieldTypeJavadoc": "좌석유형",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "FULL (종일제),PART (시간제),PERIOD (기간제)",
+      "javadoc": "좌석유형"
+    },
+    {
+      "fieldName": "seatName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "20",
+      "javadoc": "좌석명"
+    },
+    {
+      "fieldName": "seatSubType",
+      "fieldType": "SeatSubType",
+      "fieldTypeJavadoc": "좌석부가유형",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "NORMAL (일반석),COLABORATION (협업석),FOCUS (집중석),STANDING (높낮이석)",
+      "javadoc": "좌석부가유형"
+    },
+    {
+      "fieldName": "useYn",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"],
+      "javadoc": "사용가능여부"
+    },
+    {
+      "fieldName": "top",
+      "fieldType": "Long",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0",
+      "javadoc": "Y좌표"
+    },
+    {
+      "fieldName": "left",
+      "fieldType": "Long",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0",
+      "javadoc": "X좌표"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "좌석",
+  "jpaMetamodelFiltering": false,
+  "name": "Seat",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "attributeSeat",
+      "otherEntityRelationshipName": "seat",
+      "relationshipName": "attributes",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

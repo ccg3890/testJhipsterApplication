@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity AttributeOffice.
+    -->
+    <changeSet id="20220609080443-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="office_id"
+                                 baseTableName="tb_attribute_office"
+                                 constraintName="fk_tb_attribute_office__office_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tb_office"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,93 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080458",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_shapeasset",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100",
+      "javadoc": "도형자산명"
+    },
+    {
+      "fieldName": "assetType",
+      "fieldType": "ShapeAssetType",
+      "fieldTypeJavadoc": "도형자산유형",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SEAT (좌석),ROOM (회의실),LOCKER (사물함)",
+      "javadoc": "도형자산유형"
+    },
+    {
+      "fieldName": "shapeImageType",
+      "fieldType": "ShapeImageType",
+      "fieldTypeJavadoc": "도형이미지구분",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "VECTOR (벡터),IMAGE (이미지)",
+      "javadoc": "도형이미지구분"
+    },
+    {
+      "fieldName": "width",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0",
+      "javadoc": "폭"
+    },
+    {
+      "fieldName": "height",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0",
+      "javadoc": "높이"
+    },
+    {
+      "fieldName": "textAlign",
+      "fieldType": "AlignVertical",
+      "fieldTypeJavadoc": "세로정렬방법",
+      "fieldValues": "TOP (맨위),MIDDLE (중간),BOTTOM (맨아래)",
+      "javadoc": "세로정렬방법"
+    },
+    {
+      "fieldName": "shapeStyle",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "2048",
+      "javadoc": "도형스타일"
+    },
+    {
+      "fieldName": "textStyle",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "2048",
+      "javadoc": "텍스트스타일"
+    },
+    {
+      "fieldName": "scalable",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"],
+      "javadoc": "크기 조절 여부"
+    },
+    {
+      "fieldName": "useYn",
+      "fieldType": "Boolean",
+      "javadoc": "사용여부"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "도형자산",
+  "jpaMetamodelFiltering": false,
+  "name": "ShapeAsset",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "shape",
+      "otherEntityRelationshipName": "shapeAsset",
+      "relationshipName": "shape",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

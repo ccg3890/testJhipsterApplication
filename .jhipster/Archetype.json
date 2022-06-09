@@ -1,0 +1,46 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080440",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_archetype",
+  "fields": [
+    {
+      "fieldName": "attributeType",
+      "fieldType": "AttributeType",
+      "fieldTypeJavadoc": "속성종류",
+      "fieldValidateRules": ["unique", "required"],
+      "fieldValues": "GLOBAL (전역),COMPANY (회사),OFFICE (오피스),FLOOR (층),ROOM (회의실),SEAT (좌석),LOCKER (락커)",
+      "javadoc": "속성종류"
+    },
+    {
+      "fieldName": "mandantory",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"],
+      "javadoc": "필수여부"
+    },
+    {
+      "fieldName": "tag",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "256",
+      "javadoc": "태그"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "원형",
+  "jpaMetamodelFiltering": false,
+  "name": "Archetype",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "dictionary",
+      "otherEntityRelationshipName": "archetype",
+      "ownerSide": true,
+      "relationshipName": "dictionary",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

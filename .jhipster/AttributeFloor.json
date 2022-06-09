@@ -1,0 +1,23 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080444",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_attribute_floor",
+  "fields": [],
+  "fluentMethods": true,
+  "javadoc": "층속성",
+  "jpaMetamodelFiltering": false,
+  "name": "AttributeFloor",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "floor",
+      "otherEntityRelationshipName": "attributes",
+      "relationshipName": "floor",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

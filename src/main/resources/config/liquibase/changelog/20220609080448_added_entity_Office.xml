@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Office.
+    -->
+    <changeSet id="20220609080448-1" author="jhipster">
+        <createTable tableName="tb_office" remarks="오피스">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="office_name" type="varchar(50)" remarks="오피스 이름">
+                <constraints nullable="false" />
+            </column>
+            <column name="alias" type="varchar(50)" remarks="별칭">
+                <constraints nullable="true" />
+            </column>
+            <column name="alias_prefix" type="varchar(50)" remarks="별칭 접두사">
+                <constraints nullable="true" />
+            </column>
+            <column name="alias_suffix" type="varchar(50)" remarks="별칭 접미사">
+                <constraints nullable="true" />
+            </column>
+            <column name="work_time_config_yn" type="boolean" remarks="근무시간 설정여부">
+                <constraints nullable="true" />
+            </column>
+            <column name="work_start_time" type="varchar(255)" remarks="근무시작시간">
+                <constraints nullable="true" />
+            </column>
+            <column name="work_end_time" type="varchar(255)" remarks="근무종료시간">
+                <constraints nullable="true" />
+            </column>
+            <column name="no_show_yn" type="boolean" remarks="노쇼방지 사용여부 (Y or N)">
+                <constraints nullable="true" />
+            </column>
+            <column name="no_show_penalty_yn" type="boolean" remarks="좌석예약 노쇼방지 여부">
+                <constraints nullable="true" />
+            </column>
+            <column name="no_show_timer_minutes" type="integer" remarks="노쇼 타이머(분)">
+                <constraints nullable="true" />
+            </column>
+            <column name="no_show_penalty_days" type="integer" remarks="노쇼 패널티 기간">
+                <constraints nullable="true" />
+            </column>
+            <column name="apply_reservation_alarm_yn" type="boolean" remarks="예약신청 알림 여부">
+                <constraints nullable="true" />
+            </column>
+            <column name="apply_reservation_alarm_template" type="varchar(2000)" remarks="예약신청 알림 예시문">
+                <constraints nullable="true" />
+            </column>
+            <column name="pre_entrance_alarm_yn" type="boolean" remarks="사전입실 알림 여부">
+                <constraints nullable="true" />
+            </column>
+            <column name="pre_entrance_alarm_interval" type="integer" remarks="사전입실 알림 간격(분)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pre_entrance_alarm_template" type="varchar(2000)" remarks="사전입실 알림 예시문">
+                <constraints nullable="true" />
+            </column>
+            <column name="no_show_alarm_yn" type="boolean" remarks="노쇼 알림 여부">
+                <constraints nullable="true" />
+            </column>
+            <column name="no_show_alarm_template" type="varchar(2000)" remarks="노쇼 알림 예시문">
+                <constraints nullable="true" />
+            </column>
+            <column name="exclusive" type="boolean" remarks="Y or N">
+                <constraints nullable="true" />
+            </column>
+            <column name="use_duty_type" type="boolean" remarks="복무정보적용여부 (적용: Y, 미적용: N)">
+                <constraints nullable="true" />
+            </column>
+            <column name="use_user_search" type="boolean" remarks="임직원검색 사용여부 (Y or N)">
+                <constraints nullable="true" />
+            </column>
+            <column name="kiosk_zoom_enable" type="boolean" remarks="Y or N">
+                <constraints nullable="true" />
+            </column>
+            <column name="reservation_limit_day" type="integer" remarks="예약제한일수 (기본값: 0 무제한)">
+                <constraints nullable="true" />
+            </column>
+            <column name="available_seat_type" type="varchar(100)" remarks="일반 사용자 이용가능 좌석타입들 (see: tb_seat.seat_type)">
+                <constraints nullable="true" />
+            </column>
+            <column name="auto_check_in_yn" type="boolean" remarks="자동 체크인 적용여부 (적용: Y, 미적용: N)">
+                <constraints nullable="true" />
+            </column>
+            <column name="company_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20220609080448-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/tb_office.csv"
+                  separator=";"
+                  tableName="tb_office"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="office_name" type="string"/>
+            <column name="alias" type="string"/>
+            <column name="alias_prefix" type="string"/>
+            <column name="alias_suffix" type="string"/>
+            <column name="work_time_config_yn" type="boolean"/>
+            <column name="work_start_time" type="string"/>
+            <column name="work_end_time" type="string"/>
+            <column name="no_show_yn" type="boolean"/>
+            <column name="no_show_penalty_yn" type="boolean"/>
+            <column name="no_show_timer_minutes" type="numeric"/>
+            <column name="no_show_penalty_days" type="numeric"/>
+            <column name="apply_reservation_alarm_yn" type="boolean"/>
+            <column name="apply_reservation_alarm_template" type="string"/>
+            <column name="pre_entrance_alarm_yn" type="boolean"/>
+            <column name="pre_entrance_alarm_interval" type="numeric"/>
+            <column name="pre_entrance_alarm_template" type="string"/>
+            <column name="no_show_alarm_yn" type="boolean"/>
+            <column name="no_show_alarm_template" type="string"/>
+            <column name="exclusive" type="boolean"/>
+            <column name="use_duty_type" type="boolean"/>
+            <column name="use_user_search" type="boolean"/>
+            <column name="kiosk_zoom_enable" type="boolean"/>
+            <column name="reservation_limit_day" type="numeric"/>
+            <column name="available_seat_type" type="string"/>
+            <column name="auto_check_in_yn" type="boolean"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

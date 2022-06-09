@@ -1,0 +1,161 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080504",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_room",
+  "fields": [
+    {
+      "fieldName": "officeId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"],
+      "javadoc": "건물"
+    },
+    {
+      "fieldName": "floorId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"],
+      "javadoc": "층"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "64",
+      "javadoc": "회의실명"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "1024",
+      "javadoc": "회의실 설명"
+    },
+    {
+      "fieldName": "personnel",
+      "fieldType": "Long",
+      "fieldValidateRules": ["max"],
+      "fieldValidateRulesMax": "1420",
+      "javadoc": "최대예약시간(분)"
+    },
+    {
+      "fieldName": "top",
+      "fieldType": "Long",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0",
+      "javadoc": "Y좌표"
+    },
+    {
+      "fieldName": "left",
+      "fieldType": "Long",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0",
+      "javadoc": "X좌표"
+    },
+    {
+      "fieldName": "useReservationTime",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"],
+      "javadoc": "예약가능시간 사용여부"
+    },
+    {
+      "fieldName": "reservationAvailableFromTime",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "5",
+      "fieldValidateRulesMinlength": "5",
+      "fieldValidateRulesPattern": "^([01][0-9]|2[0-3]):([0-5][0-9])+$",
+      "javadoc": "예약가능 시간(from)"
+    },
+    {
+      "fieldName": "reservationAvailableToTime",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "5",
+      "fieldValidateRulesMinlength": "5",
+      "fieldValidateRulesPattern": "^([01][0-9]|2[0-3]):([0-5][0-9])+$",
+      "javadoc": "예약가능 시간(to)"
+    },
+    {
+      "fieldName": "useApproval",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"],
+      "javadoc": "예약관리여부"
+    },
+    {
+      "fieldName": "useUserAvailable",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"],
+      "javadoc": "사용자예약여부"
+    },
+    {
+      "fieldName": "useCheckInOut",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"],
+      "javadoc": "최대예약시간사용여부"
+    },
+    {
+      "fieldName": "checkInOutFromTime",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "5",
+      "fieldValidateRulesMinlength": "5",
+      "fieldValidateRulesPattern": "^([01][0-9]|2[0-3]):([0-5][0-9])+$",
+      "javadoc": "입퇴실관리 시간(from)"
+    },
+    {
+      "fieldName": "checkInOutToTime",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "5",
+      "fieldValidateRulesMinlength": "5",
+      "fieldValidateRulesPattern": "^([01][0-9]|2[0-3]):([0-5][0-9])+$",
+      "javadoc": "입퇴실관리 시간(to)"
+    },
+    {
+      "fieldName": "valid",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"],
+      "javadoc": "사용가능여부"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "회의실",
+  "jpaMetamodelFiltering": false,
+  "name": "Room",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "roomManager",
+      "otherEntityRelationshipName": "room",
+      "relationshipName": "roomManagers",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "roomUserGroup",
+      "otherEntityRelationshipName": "room",
+      "relationshipName": "roomUserGroups",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "roomSeat",
+      "otherEntityRelationshipName": "room",
+      "relationshipName": "roomSeats",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "attributeRoom",
+      "otherEntityRelationshipName": "room",
+      "relationshipName": "attributes",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "fileinfo",
+      "otherEntityRelationshipName": "room",
+      "relationshipName": "image",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

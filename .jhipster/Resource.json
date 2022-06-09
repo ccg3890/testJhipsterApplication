@@ -1,0 +1,37 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080502",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_resource",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100",
+      "javadoc": "도면아이템명"
+    },
+    {
+      "fieldName": "useYn",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"],
+      "javadoc": "사용가능여부"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "자원(좌석,회의실,라커 등)",
+  "jpaMetamodelFiltering": false,
+  "name": "Resource",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "floor",
+      "otherEntityRelationshipName": "resource",
+      "relationshipName": "floor",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

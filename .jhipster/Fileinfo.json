@@ -1,0 +1,52 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080501",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_fileinfo",
+  "fields": [
+    {
+      "fieldName": "origFileName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "256",
+      "javadoc": "원래 파일명"
+    },
+    {
+      "fieldName": "fileName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "256",
+      "javadoc": "저장된 파일명"
+    },
+    {
+      "fieldName": "filePath",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "1024",
+      "javadoc": "파일 저장 위치"
+    },
+    {
+      "fieldName": "mimeType",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "128",
+      "javadoc": "Multipurpose Internet Mail Extensions 종류"
+    },
+    {
+      "fieldName": "fileSize",
+      "fieldType": "Long",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0",
+      "javadoc": "size"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "파일정보",
+  "jpaMetamodelFiltering": false,
+  "name": "Fileinfo",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

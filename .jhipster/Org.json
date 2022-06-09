@@ -1,0 +1,114 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080451",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_org",
+  "fields": [
+    {
+      "fieldName": "orgCd",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique", "maxlength"],
+      "fieldValidateRulesMaxlength": "100",
+      "javadoc": "부서코드"
+    },
+    {
+      "fieldName": "orgName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200",
+      "javadoc": "부서명(ORGTX)"
+    },
+    {
+      "fieldName": "orgEname",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200",
+      "javadoc": "부서명(ORGTX_EN, 영문)"
+    },
+    {
+      "fieldName": "useYn",
+      "fieldType": "Boolean",
+      "javadoc": "사용여부(USE_YN, 1:사용, 0:미사용)"
+    },
+    {
+      "fieldName": "upOrgCd",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100",
+      "javadoc": "상위부서코드"
+    },
+    {
+      "fieldName": "orgTel",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "javadoc": "부서 대표번호(ORGTEL)"
+    },
+    {
+      "fieldName": "zipCd",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "10",
+      "javadoc": "근무국가코드(ZREGCODE)"
+    },
+    {
+      "fieldName": "orderNo",
+      "fieldType": "Double",
+      "javadoc": "정렬 순서(SORT_NO)"
+    },
+    {
+      "fieldName": "hierachyCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "256",
+      "javadoc": "계층부서코드"
+    },
+    {
+      "fieldName": "hierachyName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "256",
+      "javadoc": "계층부서명"
+    },
+    {
+      "fieldName": "seatLimit",
+      "fieldType": "Integer",
+      "javadoc": "부서 좌석제한 퍼센트 혹은 갯수"
+    },
+    {
+      "fieldName": "seatLimitUnit",
+      "fieldType": "UnitType",
+      "fieldTypeJavadoc": "단위",
+      "fieldValues": "COUNT (개수),PERCENT (퍼센트)",
+      "javadoc": "좌석제한단위(PERCENT or NUMBER)"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "부서",
+  "jpaMetamodelFiltering": false,
+  "name": "Org",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "org",
+      "otherEntityRelationshipName": "parent",
+      "relationshipName": "children",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "org",
+      "otherEntityRelationshipName": "children",
+      "relationshipName": "parent",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "company",
+      "otherEntityRelationshipName": "orgs",
+      "relationshipName": "company",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

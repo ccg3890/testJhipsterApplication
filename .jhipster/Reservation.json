@@ -1,0 +1,110 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080508",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_reservation",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "128",
+      "javadoc": "예약명"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "1024",
+      "javadoc": "예약설명"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "ResvStatusType",
+      "fieldTypeJavadoc": "예약상태유형",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "RESERVED (예약),COMFIRMED (예약확정),CANCELLED (취소),AUTO_CANCELED (자동취소),ENTRANCE (입실),LEAVING (퇴실)",
+      "javadoc": "예약상태"
+    },
+    {
+      "fieldName": "organizerId",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "32",
+      "javadoc": "주최자ID"
+    },
+    {
+      "fieldName": "organizerName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "64",
+      "javadoc": "주최자명"
+    },
+    {
+      "fieldName": "startDateTime",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"],
+      "javadoc": "예약시작일시"
+    },
+    {
+      "fieldName": "endDateTime",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"],
+      "javadoc": "예약종료일시"
+    },
+    {
+      "fieldName": "useAllDay",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"],
+      "javadoc": "온종일 사용 여부"
+    },
+    {
+      "fieldName": "useRecurrence",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"],
+      "javadoc": "반복사용여부"
+    },
+    {
+      "fieldName": "useResponse",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"],
+      "javadoc": "참석여부응답 사용여부"
+    },
+    {
+      "fieldName": "pin",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "128",
+      "javadoc": "회의실 PIN 번호"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "예약정보",
+  "jpaMetamodelFiltering": false,
+  "name": "Reservation",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "recurrence",
+      "otherEntityRelationshipName": "reservation",
+      "ownerSide": true,
+      "relationshipName": "recurrence",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "reservationTarget",
+      "otherEntityRelationshipName": "reservation",
+      "relationshipName": "reservationTargets",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "reservedDate",
+      "otherEntityRelationshipName": "reservation",
+      "relationshipName": "reservedDates",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

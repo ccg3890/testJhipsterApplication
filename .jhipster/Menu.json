@@ -1,0 +1,78 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080455",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_menu",
+  "fields": [
+    {
+      "fieldName": "menuDepth",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0",
+      "javadoc": "메뉴레벨"
+    },
+    {
+      "fieldName": "menuName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "javadoc": "메뉴명"
+    },
+    {
+      "fieldName": "menuUrl",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "256",
+      "javadoc": "메뉴 URL"
+    },
+    {
+      "fieldName": "orderNo",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0",
+      "javadoc": "메뉴정렬순서"
+    },
+    {
+      "fieldName": "valid",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"],
+      "javadoc": "사용여부"
+    },
+    {
+      "fieldName": "menuImageId",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "256",
+      "javadoc": "메뉴 이미지"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "메뉴",
+  "jpaMetamodelFiltering": false,
+  "name": "Menu",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "menu",
+      "otherEntityRelationshipName": "parent",
+      "relationshipName": "children",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "menu",
+      "otherEntityRelationshipName": "children",
+      "relationshipName": "parent",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "auth",
+      "otherEntityRelationshipName": "menu",
+      "ownerSide": false,
+      "relationshipName": "auth",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

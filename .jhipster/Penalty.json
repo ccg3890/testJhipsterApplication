@@ -1,0 +1,48 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080453",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_penalty",
+  "fields": [
+    {
+      "fieldName": "userId",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "20",
+      "javadoc": "사용자ID"
+    },
+    {
+      "fieldName": "officeId",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "20",
+      "javadoc": "오피스ID"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "LocalDate",
+      "javadoc": "좌석예약 제한 시작일"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "LocalDate",
+      "javadoc": "좌석예약 제한 종료일"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "페널티",
+  "jpaMetamodelFiltering": false,
+  "name": "Penalty",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "userInfo",
+      "otherEntityRelationshipName": "penalties",
+      "relationshipName": "userInfo",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

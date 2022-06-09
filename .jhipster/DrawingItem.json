@@ -1,0 +1,57 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080500",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_drawingitem",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100",
+      "javadoc": "도면아이템명"
+    },
+    {
+      "fieldName": "top",
+      "fieldType": "Long",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0",
+      "javadoc": "Y좌표"
+    },
+    {
+      "fieldName": "left",
+      "fieldType": "Long",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0",
+      "javadoc": "X좌표"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "도면아이템",
+  "jpaMetamodelFiltering": false,
+  "name": "DrawingItem",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "shapeAsset",
+      "otherEntityRelationshipName": "drawingItem",
+      "relationshipName": "shapeAsset",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "resource",
+      "otherEntityRelationshipName": "drawingItem",
+      "relationshipName": "resource",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "drawing",
+      "otherEntityRelationshipName": "drawingItems",
+      "relationshipName": "drawing",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

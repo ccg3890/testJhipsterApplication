@@ -17,22 +17,22 @@ eureka:
   client:
     enabled: false
   instance:
-    appname: testJhipsterApplication
-    instanceId: testJhipsterApplication:${spring.application.instance-id:${random.value}}
+    appname: smartoffice
+    instanceId: smartoffice:${spring.application.instance-id:${random.value}}
 
 spring:
   profiles:
     # Uncomment the following line to enable tests against production database type rather than H2, using Testcontainers
     #active: testcontainers
   application:
-    name: testJhipsterApplication
+    name: smartoffice
   cloud:
     config:
       enabled: false
 
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:mem:testjhipsterapplication;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:mem:smartoffice;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     name:
     username:
     password:
@@ -71,17 +71,24 @@ spring:
     basename: i18n/messages
   task:
     execution:
-      thread-name-prefix: test-jhipster-application-task-
+      thread-name-prefix: smartoffice-task-
       pool:
         core-size: 1
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: test-jhipster-application-scheduling-
+      thread-name-prefix: smartoffice-scheduling-
       pool:
         size: 20
   thymeleaf:
     mode: HTML
+  # Allow SecurityConfiguration to initialize w/o specifying an empty issuer-uri is OK
+  security:
+    oauth2:
+      client:
+        provider:
+          oidc:
+            issuer-uri: http://DO_NOT_CALL:9080/auth/realms/jhipster
 
 server:
   port: 10344
@@ -94,7 +101,7 @@ server:
 # ===================================================================
 jhipster:
   clientApp:
-    name: 'testJhipsterApplicationApp'
+    name: 'smartofficeApp'
   logging:
     # To test json console appender
     use-json-format: false
@@ -106,13 +113,6 @@ jhipster:
   mail:
     from: test@localhost
     base-url: http://127.0.0.1:8080
-  security:
-    authentication:
-      jwt:
-        # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
-        base64-secret: NWNlNjhmMWFiZTRlNWI2MGViYTRiMjBiOWJhNWU3ZWVkZWMwOTg4YTQ2NjJkZDZkZjMyNzZkNmQ1NmRlY2Q1M2RmYWM5MjdiMTFiOThmZWM0MGQwMDljNTdmNGRkMmUyNTE1MjI2OGM4OWUyNGI4OGNjMWI5ZjkwNzU3OGE4OGM=
-        # Token is valid 24 hours
-        token-validity-in-seconds: 86400
 # ===================================================================
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class

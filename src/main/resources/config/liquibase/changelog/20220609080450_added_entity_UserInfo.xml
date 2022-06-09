@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity UserInfo.
+    -->
+    <changeSet id="20220609080450-1" author="jhipster">
+        <createTable tableName="tb_user" remarks="사용자">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="varchar(20)" remarks="사용자 아이디(PERNR)">
+                <constraints nullable="true" />
+            </column>
+            <column name="user_name" type="varchar(50)" remarks="성명(ENAME)">
+                <constraints nullable="true" />
+            </column>
+            <column name="password" type="varchar(200)" remarks="패스워드(PWD)">
+                <constraints nullable="true" />
+            </column>
+            <column name="user_stat" type="varchar(255)" remarks="재직상태(PERSG, 1:재직 / 2:퇴직 / 6휴직 / 9:외부용역직)">
+                <constraints nullable="true" />
+            </column>
+            <column name="org_cd" type="varchar(50)" remarks="부서코드(ORGEH)">
+                <constraints nullable="true" />
+            </column>
+            <column name="rank_cd" type="varchar(50)" remarks="직위 코드(LPOSI)">
+                <constraints nullable="true" />
+            </column>
+            <column name="email" type="varchar(100)" remarks="이메일">
+                <constraints nullable="true" />
+            </column>
+            <column name="mobile" type="varchar(50)" remarks="휴대전화번호(MOBILE)">
+                <constraints nullable="true" />
+            </column>
+            <column name="tel_no" type="varchar(50)" remarks="전화번호">
+                <constraints nullable="true" />
+            </column>
+            <column name="card_no" type="varchar(10)" remarks="카드번호">
+                <constraints nullable="true" />
+            </column>
+            <column name="multi_reservation" type="boolean" remarks="다중예약가능여부 (Y or N)">
+                <constraints nullable="true" />
+            </column>
+            <column name="newbie" type="boolean" remarks="신규 사용자 여부 (Y or N)">
+                <constraints nullable="true" />
+            </column>
+            <column name="file_id" type="varchar(50)" remarks="파일ID">
+                <constraints nullable="true" />
+            </column>
+            <column name="hrsync" type="boolean" remarks="인사연동대상자여부">
+                <constraints nullable="false" />
+            </column>
+            <column name="company_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="org_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="rank_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="file_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20220609080450-1-relations" author="jhipster">
+
+        <createTable tableName="rel_tb_user__auth">
+            <column name="auth_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tb_user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="tb_user_id, auth_id" tableName="rel_tb_user__auth"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20220609080450-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/tb_user.csv"
+                  separator=";"
+                  tableName="tb_user"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="user_id" type="string"/>
+            <column name="user_name" type="string"/>
+            <column name="password" type="string"/>
+            <column name="user_stat" type="string"/>
+            <column name="org_cd" type="string"/>
+            <column name="rank_cd" type="string"/>
+            <column name="email" type="string"/>
+            <column name="mobile" type="string"/>
+            <column name="tel_no" type="string"/>
+            <column name="card_no" type="string"/>
+            <column name="multi_reservation" type="boolean"/>
+            <column name="newbie" type="boolean"/>
+            <column name="file_id" type="string"/>
+            <column name="hrsync" type="boolean"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

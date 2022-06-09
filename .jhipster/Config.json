@@ -1,0 +1,75 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080456",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_config",
+  "fields": [
+    {
+      "fieldName": "configId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["unique", "required"],
+      "javadoc": "설정ID"
+    },
+    {
+      "fieldName": "parentId",
+      "fieldType": "Long",
+      "javadoc": "부모ID"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "javadoc": "코드"
+    },
+    {
+      "fieldName": "codeType",
+      "fieldType": "CodeType",
+      "fieldTypeJavadoc": "코드유형",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "STRING (문자열형),NUMBER (숫자형),OBJECT (객체형),ARRAY (배열형)",
+      "javadoc": "코드타입"
+    },
+    {
+      "fieldName": "value",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "2048",
+      "javadoc": "값"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "2048",
+      "javadoc": "설명"
+    },
+    {
+      "fieldName": "useYn",
+      "fieldType": "Boolean",
+      "javadoc": "사용여부"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "설정",
+  "jpaMetamodelFiltering": false,
+  "name": "Config",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "config",
+      "otherEntityRelationshipName": "parent",
+      "relationshipName": "children",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "config",
+      "otherEntityRelationshipName": "children",
+      "relationshipName": "parent",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

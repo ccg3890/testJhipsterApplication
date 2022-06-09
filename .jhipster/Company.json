@@ -1,0 +1,57 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080447",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_company",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "64",
+      "javadoc": "회사명"
+    },
+    {
+      "fieldName": "engName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "64",
+      "javadoc": "회사영문명"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "1024",
+      "javadoc": "회사 설명"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "회사",
+  "jpaMetamodelFiltering": false,
+  "name": "Company",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "org",
+      "otherEntityRelationshipName": "company",
+      "relationshipName": "orgs",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "office",
+      "otherEntityRelationshipName": "company",
+      "relationshipName": "offices",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "attributeCompany",
+      "otherEntityRelationshipName": "company",
+      "relationshipName": "attributes",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

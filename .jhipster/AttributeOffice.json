@@ -1,0 +1,23 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080443",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_attribute_office",
+  "fields": [],
+  "fluentMethods": true,
+  "javadoc": "오피스속성",
+  "jpaMetamodelFiltering": false,
+  "name": "AttributeOffice",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "office",
+      "otherEntityRelationshipName": "attributes",
+      "relationshipName": "office",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

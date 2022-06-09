@@ -1,0 +1,41 @@
+{
+  "applications": ["smartoffice"],
+  "changelogDate": "20220609080510",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "tb_reserveddate",
+  "fields": [
+    {
+      "fieldName": "startDateTime",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"],
+      "javadoc": "예약일시(시작)"
+    },
+    {
+      "fieldName": "endDateTime",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"],
+      "javadoc": "예약일시(종료)"
+    },
+    {
+      "fieldName": "step",
+      "fieldType": "Integer",
+      "javadoc": "반복 예약으로 발생된 회차번호"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "예약일시체크를 위한 예약일",
+  "jpaMetamodelFiltering": false,
+  "name": "ReservedDate",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "reservation",
+      "otherEntityRelationshipName": "reservedDates",
+      "relationshipName": "reservation",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}
